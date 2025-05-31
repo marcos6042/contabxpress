@@ -1,0 +1,17 @@
+# Node
+node_modules/
+.env
+dist/
+coverage/
+
+# React
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
