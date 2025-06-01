@@ -1,16 +1,27 @@
-import express from "express";
-import dotenv from "dotenv";
-import pool from "./db";
-
-dotenv.config();
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+const pool = require('./db');
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
-app.get('/empresas', async (req, res) => {
-  const { rows } = await pool.query('SELECT * FROM empresas');
-  res.json(rows);
+app.get('/api/empresas', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM empresas LIMIT 10');
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao buscar empresas' });
+  }
+});
+
+app.get('/', (req, res) => {
+  res.send('API contabxpress funcionando 🚀');
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Backend rodando na porta ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Backend rodando em http://localhost:${PORT}`);
+});
