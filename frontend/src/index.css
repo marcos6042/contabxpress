@@ -1,16 +1,3 @@
-import express from "express";
-import dotenv from "dotenv";
-import pool from "./db";
-
-dotenv.config();
-
-const app = express();
-app.use(express.json());
-
-app.get('/empresas', async (req, res) => {
-  const { rows } = await pool.query('SELECT * FROM empresas');
-  res.json(rows);
-});
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Backend rodando na porta ${PORT}`));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
