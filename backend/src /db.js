@@ -1,10 +1,9 @@
-import { Pool } from 'pg';
+const { Pool } = require('pg');
+require('dotenv').config();
 
 const pool = new Pool({
-  connectionString: 'postgresql://postgres:Mam604200@@db.jxiznsakfihhkieldnst.supabase.co:5432/postgres',
-  ssl: {
-    rejectUnauthorized: false
-  }
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
 });
 
-export default pool;
+module.exports = pool;
